@@ -1,0 +1,60 @@
+{
+    "name": "taiwanleaftea/tltcms",
+    "description": "CMS helpers for Orchid platform",
+    "keywords": ["cms", "blog"],
+    "type": "library",
+    "authors": [
+        {
+            "name": "Taiwanleaftea",
+            "email": "info@taiwanleaftea.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "ext-iconv": "*",
+        "intervention/image": "^3.0",
+        "jaybizzle/crawler-detect": "*",
+        "laravel/framework": "^11.0",
+        "orchid/platform": "^14.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Taiwanleaftea\\Tltcms\\": "src/",
+            "Tltcms\\Support\\": "src/Support",
+            "Tltcms\\Providers\\": "src/Providers",
+            "Tltcms\\Enums\\": "src/Enums",
+            "Tltcms\\Models\\": "src/Models",
+            "Tltcms\\Orchid\\": "src/Orchid",
+            "Tltcms\\Traits\\": "src/Traits"
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tltcms\\Test\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Taiwanleaftea\\Tltcms\\Providers\\TltcmsServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/phpunit"
+        ]
+    }
+}
