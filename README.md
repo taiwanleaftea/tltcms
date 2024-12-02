@@ -37,7 +37,7 @@ public function menu(): array
 {
     return [
         ...
-        Menu::make('Параметры')
+        Menu::make(__('Settings'))
             ->icon('gear')
             ->route('admin.settings'),
         ...
