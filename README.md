@@ -30,7 +30,7 @@ config/tltcms.php and migrations will be published, next run
 php artisan migrate
 ```
 
-next add to app/Orchid/PlatformProvider.php 
+add to app/Orchid/PlatformProvider.php 
 
 ```
 public function menu(): array
@@ -45,7 +45,7 @@ public function menu(): array
 }
 ```
 
-If you want edit the views, you can publish them using command
+If you want edit views, you can publish them using command
 
 ```bash
 php artisan vendor:publish --tag=tltcms-views --ansi --force
