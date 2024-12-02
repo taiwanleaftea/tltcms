@@ -42,7 +42,7 @@ class SettingEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->setting->exists ? $this->setting->key : 'Новый параметр';
+        return $this->setting->exists ? $this->setting->key : __('New');
     }
 
     /**
@@ -84,25 +84,25 @@ class SettingEditScreen extends Screen
         return [
             Layout::rows([
                 Input::make('setting.key')
-                    ->title('Параметр')
-                    ->placeholder('Название параметра')
+                    ->title(__('Name'))
+                    ->placeholder(__('"Name of setting": "Name of setting",'))
                     ->type('text')
                     ->maxLength(255)
                     ->required(),
 
                 TextArea::make('setting.value')
-                    ->title('Значение')
-                    ->placeholder('Значение параметра, логические параметры 1 и 0')
+                    ->title(__('Value'))
+                    ->placeholder(__('Value of setting, logical parameters are 1 and 0'))
                     ->rows(3),
 
                 Select::make('setting.type.value')
-                    ->title('Тип параметра')
+                    ->title(__('Type'))
                     ->options(ValueType::labelsArray())
                     ->required(),
 
                 TextArea::make('setting.comment')
-                    ->title('Комментарий')
-                    ->placeholder('Комментарий')
+                    ->title(__('Comment'))
+                    ->placeholder(__('Comment'))
                     ->maxlength(255)
                     ->rows(3),
             ]),
@@ -117,7 +117,7 @@ class SettingEditScreen extends Screen
      */
     public function createOrUpdate(Setting $setting, Request $request): \Illuminate\Http\RedirectResponse
     {
-        $message = $setting->exists ? 'обновлён' : 'создан';
+        $message = $setting->exists ? __('updated') : __('created');
 
         $validated = Validator::make($request->get('setting'), [
             'type.value' => Rule::enum(ValueType::class),
@@ -129,16 +129,16 @@ class SettingEditScreen extends Screen
             'value' => 'nullable',
             'comment' => 'nullable|max:255',
         ], [], [
-            'type' => 'Тип параметра',
-            'key' => 'Параметр',
-            'value' => 'Значение',
-            'comment' => 'Комментарий',
+            'type' => __('Type'),
+            'key' => __('Name'),
+            'value' => __('Value'),
+            'comment' => __('Comment'),
         ])->validate();
 
         $validated['type'] = ValueType::from($validated['type']['value']);
         $setting->fill($validated)->save();
 
-        Alert::info("Параметр {$setting->key} $message");
+        Alert::info(__('Setting :key has been :action.', ['key' => $setting->key, 'action' => $message]));
 
         return redirect()->route('admin.settings');
     }
@@ -149,7 +149,7 @@ class SettingEditScreen extends Screen
      */
     public function remove(Setting $setting): \Illuminate\Http\RedirectResponse
     {
-        $message = "Параметр {$setting->key} удалён";
+        $message = __('Setting :key has been :action.', ['key' => $setting->key, 'action' => __('deleted')]);
         $setting->delete();
         Alert::info("$message");
 

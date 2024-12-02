@@ -1,0 +1,23 @@
+{
+  "Actions": "Actions",
+  "Add": "Add",
+  "Cancel": "Cancel",
+  "Comment": "Comment",
+  "Create": "Create",
+  "Delete": "Delete",
+  "Edit": "Edit",
+  "Name": "Name",
+  "Name of setting": "Name of setting",
+  "New": "New",
+  "Save": "Save",
+  "Setting": "Setting",
+  "Settings": "Settings",
+  "Type": "Type",
+  "Value": "Value",
+  "created": "created",
+  "deleted": "deleted",
+  "updated": "updated",
+  "Setting :key has been :action.": "Setting :key has been :action.",
+  "Value of setting, logical parameters are 1 and 0": "Value of setting, logical parameters are 1 and 0",
+  "Once deleted, the entry cannot be restored.": "Once deleted, the entry cannot be restored."
+}

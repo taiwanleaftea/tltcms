@@ -22,7 +22,7 @@ Route::domain((string) config('platform.domain'))
             ->name('admin.settings')
             ->breadcrumbs(fn (Trail $trail) => $trail
                 ->parent('platform.index')
-                ->push('Параметры', route('admin.settings')));
+                ->push(__('Settings'), route('admin.settings')));
 
         Route::screen('settings/{setting}/edit', SettingEditScreen::class)
             ->name('admin.settings.edit')

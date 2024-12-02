@@ -30,12 +30,12 @@ class SettingListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('key', 'Параметр')
+            TD::make('key', __('Setting'))
                 ->filter()
                 ->sort()
                 ->render(fn(Setting $setting) => Link::make($setting->key)->route('admin.settings.edit', $setting)),
 
-            TD::make('value', 'Значение')
+            TD::make('value', __('Value'))
                 ->width('60%')
                 ->style('word-break: break-word;')
                 ->sort()
@@ -47,7 +47,7 @@ class SettingListLayout extends Table
                     }
                 }),
 
-            TD::make('actions', 'Действия')
+            TD::make('actions', __('Actions'))
                 ->alignCenter()
                 ->width('100px')
                 ->render(fn(Setting $setting) => DropDown::make()
@@ -58,7 +58,7 @@ class SettingListLayout extends Table
                             ->route('admin.settings.edit', $setting),
                         Button::make(__('Delete'))
                             ->icon('trash')
-                            ->confirm('После удаления запись нельзя восстановить.')
+                            ->confirm(__('Once deleted, the entry cannot be restored.'))
                             ->action(route('admin.settings.edit', ['setting' => $setting, 'method' => 'remove']))
                     ])
                 ),

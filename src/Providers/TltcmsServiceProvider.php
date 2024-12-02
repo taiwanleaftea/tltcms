@@ -46,6 +46,8 @@ class TltcmsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'tltcms');
 
         $this->loadRoutesFrom(__DIR__.'/../../routes/tltcms.php');
+
+        $this->loadJsonTranslationsFrom(__DIR__.'/../../lang');
     }
 
     /**
