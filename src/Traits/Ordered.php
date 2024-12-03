@@ -8,7 +8,7 @@ trait Ordered
      * @param $query
      * @return mixed
      */
-    public function scopeOrderedByName($query): mixed
+    public function scopeOrdered($query): mixed
     {
         return $query->orderBy('sort');
     }
