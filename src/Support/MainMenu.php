@@ -37,7 +37,7 @@ class MainMenu
         );
 
         foreach ($menu as $item) {
-            $link = $item['is_href'] ? $item['href'] : route($item['href']);
+            $link = $item['is_href'] ? $item['link'] : route($item['link']);
             $this->put(
                 name: $item['name'],
                 link: $link,
