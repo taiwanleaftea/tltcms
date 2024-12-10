@@ -5,7 +5,7 @@ use Tltcms\Support\Facades\MainMenu;
 use Tltcms\Support\Facades\Settings;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
-const VERSION = '0.3.4';
+const VERSION = '0.3.5';
 
 if (! function_exists('settings')) {
     function settings($key, $default = null) {
