@@ -21,9 +21,9 @@ if (! function_exists('settings')) {
     /**
      * @param $key
      * @param $default
-     * @return string
+     * @return string|null
      */
-    function settings($key, $default = null): string
+    function settings($key, $default = null): string|null
     {
         return Settings::get($key, $default);
     }
