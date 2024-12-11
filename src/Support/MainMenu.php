@@ -27,6 +27,7 @@ class MainMenu
     {
         $home = route(Config::get('tltcms.homeroute', 'home'));
         $menu = Config::get('tltcms.mainmenu', []);
+        $submenu = Config::get('tltcms.submenu', []);
 
         $this->menu = [];
 
@@ -42,6 +43,16 @@ class MainMenu
                 name: $item['name'],
                 link: $link,
                 key: $item['key']
+            );
+        }
+
+        foreach ($submenu as $item) {
+            $link = $item['is_href'] ? $item['link'] : route($item['link']);
+
+            $this->submenu(
+                key: $item['key'],
+                name: $item['name'],
+                link: $link
             );
         }
     }

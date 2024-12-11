@@ -9,7 +9,7 @@ return [
     'homeroute' => 'home',
 
     /*
-     * Main menu links
+     * Main menu and submenu links
      *
      * name, link, key
      * if is_href = true - link is href
@@ -17,10 +17,23 @@ return [
      */
     'mainmenu' => [
         [
+            /*
             'name' => 'Name',
             'link' => 'link',
             'key' => 'key',
             'is_href' => false
+            */
+        ],
+    ],
+
+    'submenu' => [
+        [
+            /*
+            'key' => 'key', // Main menu key
+            'name' => 'Name',
+            'link' => 'link',
+            'is_href' => false
+            */
         ],
     ],
 
