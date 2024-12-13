@@ -97,6 +97,19 @@ class Slug
     }
 
     /**
+     * @param string $model
+     * @param string $from
+     * @return mixed
+     */
+    public function getRedirect(string $model, string $from): mixed
+    {
+        return Redirect::where([
+                ['from', '=', $from],
+                ['model', '=', $model],
+            ])->first();
+    }
+
+    /**
      * Remove all symbols except russian and latin letters, numbers, '-' and '_' in $this->slug
      *
      * @return $this

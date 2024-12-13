@@ -30,9 +30,10 @@ return [
         [
             /*
             'key' => 'key', // Main menu key
-            'name' => 'Name',
-            'link' => 'link',
-            'is_href' => false
+            'model' => Model::class,
+            'name' => // Name parameter from model, i.e. $model->name
+            'route' => 'route.name'
+            'parameter' => 'slug', // Route parameter from model, i.e. $model->slug
             */
         ],
     ],

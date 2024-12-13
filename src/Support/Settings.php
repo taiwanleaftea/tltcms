@@ -11,7 +11,7 @@ class Settings
     /**
      * @var array
      */
-    private array $settings = [];
+    static $settings;
 
     /**
      * @param string $key
@@ -20,10 +20,10 @@ class Settings
      */
     public function get(string $key, mixed $default = null): mixed
     {
-        if (!$this->settings) {
+        if (is_null(self::$settings)) {
             $this->load();
         }
-        return $this->settings[$key] ?? $default;
+        return self::$settings[$key] ?? $default;
     }
 
     /**
@@ -32,7 +32,7 @@ class Settings
     public function flush(): void
     {
         Cache::forget('settings');
-        $this->settings = [];
+        self::$settings = [];
     }
 
     /**
@@ -41,17 +41,17 @@ class Settings
     private function load(): void
     {
         if (Cache::has('settings')) {
-            $this->settings = Cache::get('settings');
+            self::$settings = Cache::get('settings');
         } else {
             foreach (Setting::all() as $item) {
-                $this->settings[$item->key] = match ($item->type) {
+                self::$settings[$item->key] = match ($item->type) {
                     ValueType::Bool => (bool)$item->value,
                     ValueType::Int => (int)$item->value,
                     default => (string)$item->value,
                 };
             }
 
-            Cache::forever('settings', $this->settings);
+            Cache::forever('settings', self::$settings);
         }
     }
 }

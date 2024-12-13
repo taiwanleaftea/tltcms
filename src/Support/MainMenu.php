@@ -22,6 +22,7 @@ class MainMenu
 
     /**
      * @return void
+     * @throws Exception
      */
     public function init(): void
     {
@@ -47,13 +48,15 @@ class MainMenu
         }
 
         foreach ($submenu as $item) {
-            $link = $item['is_href'] ? $item['link'] : route($item['link']);
+            $collection = $item['model']::enabled()->ordered()->get();
 
-            $this->submenu(
-                key: $item['key'],
-                name: $item['name'],
-                link: $link
-            );
+            foreach ($collection as $submenuItem) {
+                $this->submenu(
+                    key: $item['key'],
+                    name: $submenuItem->{$item['name']},
+                    link: route($item['route'], $submenuItem->{$item['parameter']})
+                );
+            }
         }
     }
 
