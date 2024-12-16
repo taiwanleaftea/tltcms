@@ -32,7 +32,7 @@ class Settings
     public function flush(): void
     {
         Cache::forget('settings');
-        self::$settings = [];
+        self::$settings = null;
     }
 
     /**
