@@ -27,15 +27,15 @@ return [
     ],
 
     'submenu' => [
+        /*
         [
-            /*
             'key' => 'key', // Main menu key
             'model' => Model::class,
             'name' => // Name parameter from model, i.e. $model->name
             'route' => 'route.name'
             'parameter' => 'slug', // Route parameter from model, i.e. $model->slug
-            */
         ],
+        */
     ],
 
     /*

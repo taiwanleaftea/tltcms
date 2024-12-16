@@ -85,7 +85,7 @@ class SettingEditScreen extends Screen
             Layout::rows([
                 Input::make('setting.key')
                     ->title(__('Name'))
-                    ->placeholder(__('"Name of setting": "Name of setting",'))
+                    ->placeholder(__('Name of setting'))
                     ->type('text')
                     ->maxLength(255)
                     ->required(),
