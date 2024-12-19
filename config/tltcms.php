@@ -9,6 +9,11 @@ return [
     'homeroute' => 'home',
 
     /*
+     * Add link to home in main menu
+     */
+    'mainmenu_home' => true,
+
+    /*
      * Main menu and submenu links
      *
      * name, link, key
