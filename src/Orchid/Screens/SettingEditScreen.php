@@ -30,6 +30,9 @@ class SettingEditScreen extends Screen
      */
     public function query(Setting $setting): iterable
     {
+        if ($setting->exists) {
+            $setting->type_value = $setting->type->value;
+        }
         return [
             'setting' => $setting,
         ];
@@ -95,7 +98,7 @@ class SettingEditScreen extends Screen
                     ->placeholder(__('Value of setting, logical parameters are 1 and 0'))
                     ->rows(3),
 
-                Select::make('setting.type.value')
+                Select::make('setting.type_value')
                     ->title(__('Type'))
                     ->options(ValueType::labelsArray())
                     ->required(),
@@ -120,7 +123,7 @@ class SettingEditScreen extends Screen
         $message = $setting->exists ? __('updated') : __('created');
 
         $validated = Validator::make($request->get('setting'), [
-            'type.value' => Rule::enum(ValueType::class),
+            'type_value' => Rule::enum(ValueType::class),
             'key' => [
                 'required',
                 'max:255',
@@ -135,7 +138,8 @@ class SettingEditScreen extends Screen
             'comment' => __('Comment'),
         ])->validate();
 
-        $validated['type'] = ValueType::from($validated['type']['value']);
+        $validated['type'] = ValueType::from($validated['type_value']);
+        unset($validated['type_value']);
         $setting->fill($validated)->save();
 
         Alert::info(__('Setting :key has been :action.', ['key' => $setting->key, 'action' => $message]));
