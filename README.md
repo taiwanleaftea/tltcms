@@ -3,16 +3,7 @@ CMS helpers for Laravel Orchid
 
 ## Installation
 
-First install and set up Laravel framework and Orchid platform as described in documentation, next add to composer.json
-
-```
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "git@github.com:taiwanleaftea/tltcms.git"
-    }
-]
-```
+First install and set up Laravel framework and Orchid platform as described in documentation.
 
 Run the following commands from your terminal:
 
