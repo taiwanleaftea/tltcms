@@ -6,7 +6,7 @@ use Tltcms\Support\Facades\OrchidImage;
 use Tltcms\Support\Facades\Settings;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
-const TLTCMS_VERSION = '0.7.1';
+const TLTCMS_VERSION = '0.7.2';
 
 if (! function_exists('tltcms_version')) {
     /**
@@ -77,7 +77,7 @@ if (! function_exists('image_social')) {
      * @param string|null $alt
      * @return string
      */
-    function image_social(int|null $id, string $alt = null): string
+    function image_social(int|null $id, ?string $alt = null): string
     {
         return OrchidImage::renderSocial($id, $alt);
     }
@@ -91,7 +91,7 @@ if (! function_exists('image_html')) {
      * @param string|null $title
      * @return string
      */
-    function image_html(int|null $id, string $class = '', string $alt = null, string $title = null): string
+    function image_html(int|null $id, string $class = '', ?string $alt = null, ?string $title = null): string
     {
         return OrchidImage::renderHTML($id, $class, $alt, $title);
     }
@@ -108,7 +108,7 @@ if (! function_exists('thumb_html')) {
      * @param bool $crop
      * @return string
      */
-    function thumb_html(int|null $id, string $class = '', string $alt = null, string $title = null, int $width = null, int $height = null, bool $crop = true): string
+    function thumb_html(int|null $id, string $class = '', ?string $alt = null, ?string $title = null, ?int $width = null, ?int $height = null, bool $crop = true): string
     {
         return OrchidImage::thumbHTML($id, $class, $alt, $title, $width, $height, $crop);
     }
