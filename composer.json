@@ -46,7 +46,9 @@
             "providers": [
                 "Taiwanleaftea\\Tltcms\\Providers\\TltcmsServiceProvider"
             ],
-            "aliases": {}
+            "aliases": {
+                "OrchidImage": "Tltcms\\Support\\Facades\\OrchidImage"
+            }
         }
     },
     "config": {
