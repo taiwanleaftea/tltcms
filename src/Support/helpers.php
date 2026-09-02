@@ -6,7 +6,7 @@ use Tltcms\Support\Facades\OrchidImage;
 use Tltcms\Support\Facades\Settings;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
-const TLTCMS_VERSION = '0.7.2';
+const TLTCMS_VERSION = '0.7.3';
 
 if (! function_exists('tltcms_version')) {
     /**
@@ -27,6 +27,8 @@ if (! function_exists('settings')) {
     {
         return Settings::get($key, $default);
     }
+} else {
+    throw new Exception('Function settings already exists.');
 }
 
 if (! function_exists('main_menu')) {
@@ -37,6 +39,8 @@ if (! function_exists('main_menu')) {
     {
         return MainMenu::render();
     }
+} else {
+    throw new Exception('Function main_menu already exists.');
 }
 
 if (! function_exists('breadcrumb_html')) {
@@ -47,6 +51,8 @@ if (! function_exists('breadcrumb_html')) {
     {
         return Breadcrumb::render();
     }
+} else {
+    throw new Exception('Function breadcrumb_html already exists.');
 }
 
 if (! function_exists('breadcrumb_json')) {
@@ -57,6 +63,8 @@ if (! function_exists('breadcrumb_json')) {
     {
         return Breadcrumb::renderJson();
     }
+} else {
+    throw new Exception('Function breadcrumb_json already exists.');
 }
 
 if (! function_exists('is_crawler')) {
@@ -69,6 +77,8 @@ if (! function_exists('is_crawler')) {
 
         return $CrawlerDetect->isCrawler();
     }
+} else {
+    throw new Exception('Function is_crawler already exists.');
 }
 
 if (! function_exists('image_social')) {
@@ -81,6 +91,8 @@ if (! function_exists('image_social')) {
     {
         return OrchidImage::renderSocial($id, $alt);
     }
+} else {
+    throw new Exception('Function image_social already exists.');
 }
 
 if (! function_exists('image_html')) {
@@ -95,6 +107,8 @@ if (! function_exists('image_html')) {
     {
         return OrchidImage::renderHTML($id, $class, $alt, $title);
     }
+} else {
+    throw new Exception('Function image_html already exists.');
 }
 
 if (! function_exists('thumb_html')) {
@@ -112,4 +126,27 @@ if (! function_exists('thumb_html')) {
     {
         return OrchidImage::thumbHTML($id, $class, $alt, $title, $width, $height, $crop);
     }
+} else {
+    throw new Exception('Function thumb_html already exists.');
+}
+
+if (! function_exists('sanitize_content_html')) {
+    /**
+     * @param string|null $html
+     * @return string
+     */
+    function sanitize_content_html(?string $html): string
+    {
+        if ($html === null || $html === '') {
+            return '';
+        }
+
+        $html = preg_replace('/\sdata-[a-zA-Z0-9_-]+="[^"]*"/', '', $html);
+        $html = preg_replace('/\sclass="PDq2pG_[^"]*"/', '', $html);
+        $html = preg_replace('/<p[^>]*>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>/i', '', $html);
+
+        return trim($html);
+    }
+} else {
+    throw new Exception('Function sanitize_content_html already exists.');
 }
