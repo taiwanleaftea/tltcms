@@ -7,7 +7,7 @@
   @else
     <li class="nav-item dropdown">
       <a
-        @class(['nav-link', 'dropdown-toggle', 'active' => $item['active'],'ps-0' => $loop->first]) class="nav-link dropdown-toggle"
+        @class(['nav-link', 'dropdown-toggle', 'active' => $item['active'],'ps-0' => $loop->first])
         href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         {!! $item['name'] !!}
       </a>
