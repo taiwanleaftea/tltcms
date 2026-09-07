@@ -2,7 +2,10 @@
 
 namespace Tltcms\Test;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase;
+use Tltcms\Providers\OrchidImageServiceProvider;
 
 class FeatureTestCase extends TestCase
 {
@@ -16,7 +19,7 @@ class FeatureTestCase extends TestCase
     protected function getPackageProviders($app): array
     {
         return [
-            'Tltcms\Providers\TltcmsServiceProvider',
+            OrchidImageServiceProvider::class,
         ];
     }
 
@@ -28,10 +31,22 @@ class FeatureTestCase extends TestCase
             'database' => ':memory:',
             'prefix' => '',
         ]);
+        $app['config']->set('tltimage', require __DIR__.'/../config/tltimage.php');
+        $app['view']->addNamespace('tltcms', __DIR__.'/../resources/views');
     }
 
     protected function setUpDatabase(): void
     {
         $this->artisan('migrate')->run();
+
+        Schema::create('attachments', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('extension');
+            $table->string('path')->nullable();
+            $table->unsignedInteger('width')->nullable();
+            $table->unsignedInteger('height')->nullable();
+            $table->timestamps();
+        });
     }
 }

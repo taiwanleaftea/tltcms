@@ -6,7 +6,7 @@ use Tltcms\Support\Facades\OrchidImage;
 use Tltcms\Support\Facades\Settings;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
-const TLTCMS_VERSION = '0.8.0';
+const TLTCMS_VERSION = '0.9.0';
 
 if (! function_exists('tltcms_version')) {
     /**

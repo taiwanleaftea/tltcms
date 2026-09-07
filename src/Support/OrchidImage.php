@@ -108,11 +108,34 @@ class OrchidImage
      */
     public function renderHTML(int|null $id, string $class = '', ?string $alt = null, ?string $title = null): string
     {
+        return $this->renderAttachmentHTML(
+            $id ? Attachment::find($id) : null,
+            $class,
+            $alt,
+            $title,
+        );
+    }
+
+    /**
+     * Render html img tag for a loaded attachment.
+     *
+     * This avoids an additional database query when the attachment was eager
+     * loaded by the calling application.
+     *
+     * @param Attachment|null $attachment
+     * @param string $class
+     * @param string|null $alt
+     * @param string|null $title
+     * @return string
+     * @throws \Throwable
+     */
+    public function renderAttachmentHTML(?Attachment $attachment, string $class = '', ?string $alt = null, ?string $title = null): string
+    {
         $url = config('tltimage.no_photo');
         $width = config('tltimage.no_photo_width');
         $height = config('tltimage.no_photo_height');
 
-        $model = Attachment::find($id);
+        $model = $attachment;
 
         if ($model) {
             $fullname = $model->path . $model->name . '.' . $model->extension;

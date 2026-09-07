@@ -6,8 +6,8 @@ use Tltcms\Test\FeatureTestCase;
 
 class HelpersTest extends FeatureTestCase
 {
-    public function it_executes_tltcms_version()
+    public function test_it_returns_the_package_version(): void
     {
-
+        self::assertNotEmpty(tltcms_version());
     }
 }
