@@ -6,7 +6,7 @@ use Tltcms\Support\Facades\OrchidImage;
 use Tltcms\Support\Facades\Settings;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
 
-const TLTCMS_VERSION = '0.7.5';
+const TLTCMS_VERSION = '0.8.0';
 
 if (! function_exists('tltcms_version')) {
     /**
@@ -19,11 +19,11 @@ if (! function_exists('tltcms_version')) {
 
 if (! function_exists('settings')) {
     /**
-     * @param $key
-     * @param $default
+     * @param string $key
+     * @param string|null $default
      * @return mixed
      */
-    function settings($key, $default = null): mixed
+    function settings(string $key, ?string $default = null): mixed
     {
         return Settings::get($key, $default);
     }
@@ -86,6 +86,7 @@ if (! function_exists('image_social')) {
      * @param int|null $id
      * @param string|null $alt
      * @return string
+     * @throws Throwable
      */
     function image_social(int|null $id, ?string $alt = null): string
     {

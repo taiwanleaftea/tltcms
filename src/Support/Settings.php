@@ -11,7 +11,7 @@ class Settings
     /**
      * @var array
      */
-    static $settings;
+    static array $settings;
 
     /**
      * @param string $key
@@ -32,7 +32,7 @@ class Settings
     public function flush(): void
     {
         Cache::forget('settings');
-        self::$settings = null;
+        self::$settings = [];
     }
 
     /**

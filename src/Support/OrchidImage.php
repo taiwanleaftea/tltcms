@@ -55,8 +55,9 @@ class OrchidImage
      * @param int|null $id
      * @param string|null $alt
      * @return string
+     * @throws \Throwable
      */
-    public function renderSocial(int|null $id, string $alt = null): string
+    public function renderSocial(int|null $id, ?string $alt = null): string
     {
         $rendered = '';
 
@@ -103,8 +104,9 @@ class OrchidImage
      * @param string|null $alt
      * @param string|null $title
      * @return string
+     * @throws \Throwable
      */
-    public function renderHTML(int|null $id, string $class = '', string $alt = null, string $title = null): string
+    public function renderHTML(int|null $id, string $class = '', ?string $alt = null, ?string $title = null): string
     {
         $url = config('tltimage.no_photo');
         $width = config('tltimage.no_photo_width');
@@ -148,13 +150,12 @@ class OrchidImage
      * Generate thumbnail
      *
      * @param int|null $id
-     * @param int $width
-     * @param int $height
+     * @param int|null $width
+     * @param int|null $height
      * @param bool $crop
-     * @param string $nophoto
      * @return string
      */
-    public function thumb(int|null $id, int $width = null, int $height = null, bool $crop = true): string
+    public function thumb(int|null $id, ?int $width = null, ?int $height = null, bool $crop = true): string
     {
         $width = $width ?? config('tltimage.thumb_width');
         $height = $height ?? config('tltimage.thumb_height');
@@ -213,8 +214,9 @@ class OrchidImage
      * @param int|null $height
      * @param bool $crop
      * @return string
+     * @throws \Throwable
      */
-    public function thumbHTML(int|null $id, string $class = '', string $alt = null, string $title = null, int $width = null, int $height = null, bool $crop = true): string
+    public function thumbHTML(int|null $id, string $class = '', ?string $alt = null, ?string $title = null, ?int $width = null, ?int $height = null, bool $crop = true): string
     {
         return view('tltcms::modules.tltimage.thumb', [
             'url' => $this->thumb($id, $width, $height, $crop),

@@ -99,9 +99,9 @@ class Slug
     /**
      * @param string $model
      * @param string $from
-     * @return mixed
+     * @return Redirect|null
      */
-    public function getRedirect(string $model, string $from): mixed
+    public function getRedirect(string $model, string $from): ?Redirect
     {
         return Redirect::where([
                 ['from', '=', $from],
