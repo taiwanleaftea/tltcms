@@ -48,5 +48,12 @@ class FeatureTestCase extends TestCase
             $table->unsignedInteger('height')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id();
+            $table->string('key')->unique();
+            $table->text('value')->nullable();
+            $table->string('type');
+        });
     }
 }
